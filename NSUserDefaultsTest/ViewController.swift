@@ -1,25 +1,34 @@
 //
 //  ViewController.swift
-//  NSUserDefaultsTest
-//
-//  Created by 齋藤緒 on 2016/06/28.
-//  Copyright © 2016年 TestOrganization. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate{
 
+    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var testTextField: UITextField!
+    
+    
+    //最初からあるメソッド
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //デリゲート先を自分に設定する
+        testTextField.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //Returnキー押下時の呼び出しメソッド
+    func textFieldShouldReturn(textField:UITextField) -> Bool {
+
+        //キーボードをしまう
+        self.view.endEditing(true)
+        
+        //テキストフィールドの文字列をラベルに設定する。
+        testLabel.text = testTextField.text
+        
+        return false
     }
-
-
 }
 
